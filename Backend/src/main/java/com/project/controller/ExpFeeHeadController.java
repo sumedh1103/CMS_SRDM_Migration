@@ -36,4 +36,13 @@ public class ExpFeeHeadController {
     public void delete(@PathVariable int id) {
         expFeeHeadService.deleteById(id);
     }
+
+    // Update endpoint
+    @PutMapping("/{id}")
+    public ResponseEntity<ExpFeeHeadEntity> updateExpFeeHead(
+            @PathVariable int id,
+            @RequestBody ExpFeeHeadEntity expFeeHeadEntity) {
+        ExpFeeHeadEntity updatedEntity = expFeeHeadService.updateExpFeeHead(id, expFeeHeadEntity);
+        return new ResponseEntity<>(updatedEntity, HttpStatus.OK);
+    }
 }

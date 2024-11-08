@@ -7,10 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List; 
- 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/create-staff") 
+@RequestMapping("/api/create-staff")
 public class CreateStaffController {
 
     @Autowired
@@ -32,6 +32,12 @@ public class CreateStaffController {
         return createStaffService.getById(id);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CreateStaffEntity> updateStaff(@PathVariable int id, @RequestBody CreateStaffEntity updatedStaff) {
+        CreateStaffEntity updatedEntity = createStaffService.updateStaff(id, updatedStaff);
+        return new ResponseEntity<>(updatedEntity, HttpStatus.OK);
+    }
+    
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id) {
         createStaffService.deleteById(id);
