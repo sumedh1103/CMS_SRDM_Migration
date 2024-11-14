@@ -3,18 +3,32 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
-import { routes } from './app.routes'; // Import routes if needed
+import { routes } from './app.routes'; // Routes imported
+
+// Import CoreUI and any standalone services/modules
+import { DropdownModule, SidebarModule } from '@coreui/angular';
+import { IconSetService } from '@coreui/icons-angular';
 
 @NgModule({
   declarations: [
-    AppComponent // Add your main component here
+    AppComponent // Declare your main AppComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes) // Configure routes if `app.routes.ts` exports routes
+    BrowserAnimationsModule,
+    SidebarModule,
+    DropdownModule,
+    RouterModule.forRoot(routes, {
+      onSameUrlNavigation: 'reload',
+      scrollPositionRestoration: 'top',
+      anchorScrolling: 'enabled',
+      initialNavigation: 'enabledBlocking',
+      useHash: true // Optional, based on your needs
+    })
   ],
-  providers: [], // Import `app.config.ts` if you have services or configurations
-  bootstrap: [AppComponent] // The root component to bootstrap
+  providers: [
+    IconSetService // Add standalone services here
+  ],
+  bootstrap: [AppComponent] // Bootstrap with AppComponent
 })
 export class AppModule { }
