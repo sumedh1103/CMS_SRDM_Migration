@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-12">
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>Exp Fee Head</strong>
+      </c-card-header>
+      <c-card-body>
+        <form #customStylesForm="ngForm" (ngSubmit)="onSubmit11(customStylesForm)"
+          [ngClass]="{'was-validated': customStylesValidated}" cForm class="row g-3 needs-validation">
+          
+          <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">Fee Head</label>
+            <input class="form-control" id="validationCustom01" name="fee_head" [(ngModel)]="formValue.fee_head" required type="text"/>
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom02" class="form-label">Amount</label>
+            <input class="form-control" id="validationCustom02" name="amount" [(ngModel)]="formValue.amount" required type="number"/>
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary me-1">
+              Submit
+            </button>
+          </div>
+        </form>
+      </c-card-body>
+    </c-card>
+  </div>
+</div>
+
+<!-- Table to display the fee head entries -->
+<div class="col-12 mt-4">
+  <c-card class="mb-4">
+    <c-card-header>
+      <strong>Fee Head List</strong>
+    </c-card-header>
+    <c-card-body>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Fee Head</th>
+            <th>Amount</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let feeHead of feeHeads; let i = index">
+            <td>{{ feeHead.feeHead }}</td>
+            <td>{{ feeHead.amount }}</td>
+            <td>
+              <button (click)="editFeeHead(i)" class="btn btn-primary">Edit</button>
+              <button (click)="deleteFeeHead(i)" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </c-card-body>
+  </c-card>
+</div>
